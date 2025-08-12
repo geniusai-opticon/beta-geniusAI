@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GENIUS.AI.SOLUTION — Beta: 3 Monate Premium kostenlos</title>
+  <meta name="description" content="KI-basierte Vertragsoptimierung — Jetzt als Beta: 3 Monate Premium kostenlos für die ersten 1000 Tester. Schnell anmelden!" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    /* ---------- BASE / THEME ---------- */
+    :root{
+      --bg:#0b1020; --card:#0f1724; --glass: rgba(255,255,255,0.06);
+      --accent:#7C5CFF; --muted:#9aa7c7; --success:#2dd4bf;
+      --shadow: 0 6px 24px rgba(2,6,23,0.6);
+      --glass-border: rgba(255,255,255,0.06);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:
+      radial-gradient(800px 400px at 10% 10%, rgba(124,92,255,0.12), transparent 6%),
+      radial-gradient(600px 300px at 90% 90%, rgba(34,197,94,0.04), transparent 6%),
+      linear-gradient(180deg,var(--bg), #061022 120%);
+      color:#e6eef8; -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:80px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .container{
+      width:100%; max-width:1100px; padding:28px;
+      display:grid; grid-template-columns: 1fr 420px; gap:28px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr; padding:18px}
+    }
+
+    /* ---------- STICKY TOPBAR / COUNTDOWN ---------- */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(11,16,32,0.55), rgba(11,16,32,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      padding:10px 20px; display:flex; gap:16px; align-items:center;
+      justify-content:space-between;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:44px; height:44px; border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#3ddc97);
+      display:flex; align-items:center; justify-content:center; font-weight:700; color:white;
+      box-shadow:0 8px 30px rgba(124,92,255,0.12);
+    }
+    .countdown{
+      font-weight:700; font-size:14px; color:#fff;
+      background:linear-gradient(90deg, rgba(124,92,255,0.12), transparent);
+      padding:8px 12px;border-radius:10px;
+      display:flex; gap:8px; align-items:center;
+    }
+
+    /* ---------- LEFT MAIN ---------- */
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:16px; padding:28px; box-shadow:var(--shadow);
+      border:1px solid var(--glass-border);
+      position:relative; overflow:hidden;
+    }
+    .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(124,92,255,0.12); color:var(--accent); font-weight:700; font-size:13px; margin-bottom:14px}
+    h1{font-size:32px; margin:6px 0 12px; line-height:1.05}
+    p.lead{color:var(--muted); margin-bottom:18px; max-width:60ch}
+    .stats{display:flex; gap:12px; margin-top:12px; flex-wrap:wrap}
+    .stat{background:rgba(255,255,255,0.02); padding:12px;border-radius:10px; min-width:120px; text-align:center}
+    .stat strong{display:block; font-size:18px}
+
+    /* floating icons */
+    .floating{
+      position:absolute; right:-40px; top:-40px; opacity:0.12; transform:rotate(12deg); font-size:110px; pointer-events:none;
+    }
+
+    /* ---------- RIGHT PANEL (Card) ---------- */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:16px; padding:20px; box-shadow:var(--shadow);
+      border:1px solid var(--glass-border);
+      position:sticky; top:88px;
+    }
+    .seats{display:flex; gap:10px; align-items:center; margin-bottom:12px}
+    .seats .pill{background:linear-gradient(90deg,#0ea5a9 0%, #7C5CFF 100%); color:white; padding:8px 12px; border-radius:999px; font-weight:700}
+    form .row{display:flex; gap:8px; margin-bottom:10px}
+    form input, form select{
+      width:100%; padding:12px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.02); color:inherit; outline:none;
+    }
+    .hint{font-size:12px; color:var(--muted); margin-top:8px}
+    .actions{display:flex; gap:8px; margin-top:10px}
+    button.cta{
+      flex:1; background:linear-gradient(90deg,var(--accent), #3ddc97); color:#021125; border:none; padding:12px 14px; border-radius:10px; font-weight:800;
+      cursor:pointer; box-shadow:0 12px 30px rgba(124,92,255,0.14);
+    }
+    button.ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:12px 14px; border-radius:10px; color:var(--muted); cursor:pointer}
+    .oauths{display:flex; gap:8px; margin-top:10px}
+    .oauth-btn{flex:1; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.02); cursor:pointer}
+    .small{font-size:13px; color:var(--muted)}
+
+    /* success modal */
+    .modal{
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:120; backdrop-filter:blur(6px);
+      visibility:hidden; opacity:0; transition:all .18s ease;
+    }
+    .modal.show{visibility:visible; opacity:1}
+    .modal .box{
+      background: linear-gradient(180deg,#071124 0%, #07101b 100%); padding:24px; border-radius:14px;
+      width:min(760px,95%); box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.04);
+    }
+    .confetti-canvas{position:absolute; inset:0; pointer-events:none; z-index:122}
+
+    /* footer stuff */
+    footer{margin-top:24px; color:var(--muted); font-size:13px;}
+
+    /* microanimations */
+    .pulse{animation:pulse 2s infinite;}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+    /* accessibility focus */
+    input:focus,button:focus{box-shadow:0 0 0 4px rgba(124,92,255,0.08)}
+  </style>
+</head>
+<body>
+  <!-- TOPBAR / STICKY -->
+  <div class="topbar" role="banner">
+    <div class="brand">
+      <div class="logo">G</div>
+      <div>
+        <div style="font-weight:700">GENIUS.AI.SOLUTION</div>
+        <div style="font-size:12px;color:var(--muted)">Beta — 3 Monate Premium kostenlos</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; align-items:center">
+      <div class="countdown" aria-live="polite" id="top-countdown">Launching in <span id="sticky-count">00d 00h 00m</span></div>
+      <div style="font-size:13px; color:var(--muted)">Plätze: <strong id="live-seats">247</strong>/1000</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="badge">Exklusiv · Kostenlose Beta</div>
+      <h1 id="hero-title">Sofort bessere Verträge — KI optimiert Kosten & Konditionen</h1>
+      <p class="lead">Sichere dir jetzt 3 Monate Premium (Wert: 30€) — Nur für die ersten 1.000 Beta-Tester. Schnell registrieren, Rabatt anzeigen & direkt teilen.</p>
+
+      <div class="stats" aria-hidden="false">
+        <div class="stat"><small>Ø Ersparnis</small><strong>€427</strong><span style="display:block;color:var(--muted);font-size:13px">durchschnittlich pro Nutzer</span></div>
+        <div class="stat"><small>Beta-Plätze</small><strong id="stat-remaining">753</strong><span style="display:block;color:var(--muted);font-size:13px">verfügbar</span></div>
+        <div class="stat"><small>Registrierungen</small><strong id="stat-registered">247</strong><span style="display:block;color:var(--muted);font-size:13px">aktuell</span></div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+          <button class="cta pulse" id="cta-top" data-ab="A">Jetzt kostenlosen Platz sichern</button>
+          <button class="ghost" id="cta-info">Wie funktioniert's?</button>
+        </div>
+      </div>
+
+      <div class="floating">⚡🔥🌐</div>
+
+      <footer style="margin-top:18px">
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <div class="small">Trust: DSGVO konform · Support: support@genius-ai-solution.com</div>
+          <div class="small">FAQ · Datenschutz · AGB</div>
+        </div>
+      </footer>
+    </section>
+
+    <aside class="card" aria-labelledby="register-heading">
+      <h3 id="register-heading">Sichere dir 3 Monate Premium — kostenlos</h3>
+      <div class="seats">
+        <div class="pill" id="pill-seats">Nur 1000 Plätze</div>
+        <div style="font-size:13px;color:var(--muted)">Early-Bird Wert: €30</div>
+      </div>
+
+      <form id="signup-form" novalidate>
+        <div class="row">
+          <input id="fullName" name="name" placeholder="Vorname Nachname" required autocomplete="name" />
+        </div>
+        <div class="row">
+          <input id="email" name="email" type="email" placeholder="E-Mail" required autocomplete="email" />
+        </div>
+
+        <div class="row">
+          <select id="interest" name="interest" aria-label="Für welche Tarife interessieren Sie sich?">
+            <option value="">Welcher Bereich interessiert dich?</option>
+            <option>Versicherungen</option>
+            <option>Stromanbieter</option>
+            <option>Mobilfunk</option>
+            <option>Bank & Kredit</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <input id="monthlySpend" name="monthlySpend" placeholder="Aktuelle Ausgaben / Monat € (optional)" inputmode="numeric" />
+        </div>
+
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px">
+          <input id="gdpr" type="checkbox" required />
+          <label for="gdpr" style="font-size:13px;color:var(--muted)">Ich stimme zu, E-Mails von GENIUS.AI.SOLUTION zu erhalten. DSGVO-konform.</label>
+        </div>
+
+        <div class="actions">
+          <button class="cta" id="submit">Platz sichern — 3 Monate gratis</button>
+          <button type="button" class="ghost" id="stripe-btn">Später bezahlen (Stripe)</button>
+        </div>
+
+        <div class="oauths">
+          <button type="button" class="oauth-btn" id="google-oauth">Google One-Click</button>
+          <button type="button" class="oauth-btn" id="linkedin-oauth">LinkedIn One-Click</button>
+        </div>
+
+        <div class="hint">Teile deinen Einladungslink und erhalte 1 Extra-Monat pro 3 geworbener Nutzer.</div>
+      </form>
+
+      <div style="margin-top:12px">
+        <div style="display:flex; gap:8px; align-items:center">
+          <div style="flex:1">
+            <input id="referralCode" placeholder="Dein Einladungslink" readonly style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);" />
+          </div>
+          <button class="ghost" id="copy-ref">Kopieren</button>
+        </div>
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:8px; align-items:center;">
+        <button class="ghost" id="share-telegram">Teilen</button>
+        <button class="ghost" id="share-twitter">Tweet</button>
+      </div>
+
+      <footer style="margin-top:16px; font-size:13px; color:var(--muted)">
+        <div>Bevorzugte Integrationen: Mailchimp / ConvertKit / Stripe</div>
+        <div style="margin-top:6px">Tracking: Google Analytics & Facebook Pixel (Platzhalter im Code)</div>
+      </footer>
+    </aside>
+  </main>
+
+  <!-- Success Modal (hidden by default) -->
+  <div class="modal" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title">
+    <canvas class="confetti-canvas" id="confetti-canvas"></canvas>
+    <div class="box">
+      <h2 id="success-title">Willkommen in der Beta 🎉</h2>
+      <p id="success-sub" style="color:var(--muted)">Du hast erfolgreich einen Beta-Platz reserviert. Wir haben dir gerade eine Bestätigung per E-Mail geschickt.</p>
+
+      <div style="display:flex; gap:8px; margin-top:12px">
+        <button class="cta" id="go-dashboard">Zum Tutorial</button>
+        <button class="ghost" id="close-modal">Weiter teilen</button>
+      </div>
+      <div style="margin-top:14px; color:var(--muted); font-size:13px">Empfehle GENIUS.AI.SOLUTION und sichere dir Extra-Monate — dein Referral-Link ist oben.</div>
+    </div>
+  </div>
+
+  <script>
+  /*************************************************************************
+   * Client-side Beta Landing Page Script
+   *
+   * - Countdown (sticky + main)
+   * - Dynamic live count simulation (ready for socket/REST)
+   * - Signup form validation (instant feedback)
+   * - Local referral system + share
+   * - Success modal with confetti
+   * - A/B testing hooks (data-ab attribute)
+   * - Pixel / Analytics placeholders
+   *
+   * Connect points:
+   *  - Replace `sendToBackend()` with your API endpoint (Mailchimp/ConvertKit)
+   *  - Replace OAuth placeholder with real OAuth flow & callback handling
+   *  - Replace Stripe button with server-side session creation (Stripe Checkout)
+   **************************************************************************/
+
+  (function(){
+    // ---------- CONFIG ----------
+    const BETA_LIMIT = 1000;
+    const STARTING_REGISTERED = 247; // initial visible count (simulated)
+    const LAUNCH_IN_DAYS = 30; // countdown days
+    const launchDate = new Date(Date.now() + LAUNCH_IN_DAYS*24*60*60*1000);
+
+    // Elements
+    const stickyCountEl = document.getElementById('sticky-count');
+    const topSeatsEl = document.getElementById('live-seats');
+    const statRegisteredEl = document.getElementById('stat-registered');
+    const statRemainingEl = document.getElementById('stat-remaining');
+    const submitBtn = document.getElementById('submit');
+    const signupForm = document.getElementById('signup-form');
+    const successModal = document.getElementById('success-modal');
+    const copyRefBtn = document.getElementById('copy-ref');
+    const referralInput = document.getElementById('referralCode');
+    const confCanvas = document.getElementById('confetti-canvas');
+
+    // State (can be replaced by real-time API)
+    let registered = Number(localStorage.getItem('beta_registered')) || STARTING_REGISTERED;
+    let referral = localStorage.getItem('referral') || generateReferral();
+
+    // init display
+    function updateSeatsUI(){
+      const remaining = Math.max(0, BETA_LIMIT - registered);
+      topSeatsEl.textContent = registered;
+      statRegisteredEl.textContent = registered;
+      statRemainingEl.textContent = remaining;
+      document.getElementById('pill-seats').textContent = `Nur ${remaining} Plätze`;
+      referralInput.value = `${location.origin}?ref=${referral}`;
+    }
+    updateSeatsUI();
+
+    // ---------- DYNAMIC LIVE COUNT (simulated) ----------
+    // This simulates small increases to create social-proof urgency.
+    // Replace with websockets or server-sent events for real live counts.
+    setInterval(()=>{
+      // small probabilistic bump
+      if(Math.random() < 0.28 && registered < BETA_LIMIT){
+        registered += Math.floor(Math.random()*3) + 1;
+        localStorage.setItem('beta_registered', registered);
+        updateSeatsUI();
+      }
+      // animate sticky countdown (keeps user engaged)
+      stickyCountEl.style.transform = (Math.random()<.02? 'scale(1.02)': 'scale(1)');
+    }, 15000);
+
+    // ---------- COUNTDOWN ----------
+    function updateCountdown(){
+      const now = new Date();
+      let diff = launchDate - now;
+      if(diff < 0) diff = 0;
+      const days = Math.floor(diff / (1000*60*60*24));
+      diff -= days*1000*60*60*24;
+      const hrs = String(Math.floor(diff / (1000*60*60))).padStart(2,'0');
+      const mins = String(Math.floor((diff % (1000*60*60)) / (1000*60))).padStart(2,'0');
+      const daysLabel = `${days}d ${hrs}h ${mins}m`;
+      document.getElementById('sticky-count').textContent = daysLabel;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000*60);
+
+    // ---------- FORM VALIDATION & SUBMIT ----------
+    function emailValid(email){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    function sanitizeNumber(s){
+      const n = s.replace(/[^\d.,]/g,'').replace(',','.');
+      return isNaN(Number(n))? null: Number(n);
+    }
+
+    signupForm.addEventListener('input', (ev)=>{
+      const tgt = ev.target;
+      if(tgt.id === 'email'){
+        if(emailValid(tgt.value)) tgt.style.borderColor = 'rgba(46,204,113,0.2)';
+        else tgt.style.borderColor = 'rgba(255,77,79,0.12)';
+      }
+    });
+
+    signupForm.addEventListener('submit', async (ev)=>{
+      ev.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sichere Platz...';
+
+      // collect data
+      const payload = {
+        name: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        interest: document.getElementById('interest').value,
+        spend: sanitizeNumber(document.getElementById('monthlySpend').value),
+        ref: referral,
+        ts: new Date().toISOString()
+      };
+
+      // client-side validation
+      if(!payload.name || !payload.email || !emailValid(payload.email) || !document.getElementById('gdpr').checked){
+        alert('Bitte Name, valide E-Mail und Einwilligung angeben.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Platz sichern — 3 Monate gratis';
+        return;
+      }
+
+      // Track A/B variant (hook for experiments)
+      const abVariant = document.querySelector('[data-ab]')?.getAttribute('data-ab') || 'A';
+      payload.ab = abVariant;
+
+      try{
+        // Send to backend (placeholder). Replace URL with your serverless endpoint.
+        // Example: await sendToBackend(payload);
+        // For now: simulate request latency + success
+        await new Promise(r => setTimeout(r, 800));
+
+        // increase counts
+        registered += 1;
+        localStorage.setItem('beta_registered', registered);
+
+        // store local signed user list (client-side, for demo). OPTIONAL: remove in prod.
+        const signed = JSON.parse(localStorage.getItem('signed_users') || '[]');
+        signed.push(payload);
+        localStorage.setItem('signed_users', JSON.stringify(signed));
+
+        // show success
+        showSuccessModal(payload);
+
+        // show referral link & enable copy
+        referralInput.value = `${location.origin}?ref=${referral}`;
+        updateSeatsUI();
+
+        // OPTION: send to analytics here (GA, FB Pixel)
+        // window.ga('send','event','signup','beta',payload.email);
+        // fbq('track','Lead');
+
+      }catch(err){
+        console.error(err);
+        alert('Fehler beim Anmelden — bitte später erneut versuchen.');
+      }finally{
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Platz sichern — 3 Monate gratis';
+      }
+    });
+
+    // Placeholder function: implement server connection here.
+    async function sendToBackend(payload){
+      // Example:
+      // return fetch('/api/signup', {method:'POST', body:JSON.stringify(payload), headers:{'Content-Type':'application/json'}});
+      throw new Error('sendToBackend not implemented');
+    }
+
+    // ---------- REFERRAL ----------
+    function generateReferral(){
+      const r = 'g' + Math.random().toString(36).slice(2,9);
+      localStorage.setItem('referral', r);
+      return r;
+    }
+
+    copyRefBtn.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(referralInput.value);
+        copyRefBtn.textContent = 'Kopiert!';
+        setTimeout(()=> copyRefBtn.textContent = 'Kopieren', 2000);
+      }catch(e){ alert('Kopieren nicht möglich. Bitte manuell kopieren.') }
+    });
+
+    // share buttons
+    document.getElementById('share-twitter').addEventListener('click', ()=>{
+      const u = encodeURIComponent(referralInput.value);
+      const t = encodeURIComponent('Sichere dir 3 Monate Premium bei GENIUS.AI.SOLUTION — kostenlos! ' + referralInput.value);
+      window.open(`https://twitter.com/intent/tweet?text=${t}`, '_blank');
+    });
+    document.getElementById('share-telegram').addEventListener('click', ()=>{
+      const t = encodeURIComponent('Sichere dir 3 Monate Premium bei GENIUS.AI.SOLUTION — kostenlos! ' + referralInput.value);
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(referralInput.value)}&text=${t}`, '_blank');
+    });
+
+    // ---------- OAUTH / STRIPE PLACEHOLDERS ----------
+    document.getElementById('google-oauth').addEventListener('click', ()=>{
+      // Replace with real Google OAuth endpoint
+      alert('Google One-Click startet (Platzhalter). Implementiere serverseitige OAuth & Redirect.');
+    });
+    document.getElementById('linkedin-oauth').addEventListener('click', ()=>{
+      // Replace with real LinkedIn OAuth endpoint
+      alert('LinkedIn One-Click startet (Platzhalter). Implementiere serverseitige OAuth & Redirect.');
+    });
+    document.getElementById('stripe-btn').addEventListener('click', ()=>{
+      // Replace with server call to create Stripe Checkout session
+      alert('Stripe Checkout (Platzhalter). Implementiere serverseitig /api/create-checkout-session.');
+    });
+
+    // ---------- SUCCESS MODAL + CONFETTI ----------
+    function showSuccessModal(payload){
+      successModal.classList.add('show');
+      // confetti
+      runConfetti();
+      // prefill email into modal message
+      const sub = document.getElementById('success-sub');
+      sub.textContent = `Danke ${payload.name.split(' ')[0] || ''} — wir haben dir eine Bestätigung an ${payload.email} geschickt.`;
+    }
+    document.getElementById('close-modal').addEventListener('click', ()=> successModal.classList.remove('show'));
+    document.getElementById('go-dashboard').addEventListener('click', ()=> {
+      // in prod: redirect to onboarding / tutorial
+      window.location.href = '/onboarding.html';
+    });
+
+    // Simple confetti
+    function runConfetti(){
+      const c = confCanvas;
+      const ctx = c.getContext('2d');
+      c.width = window.innerWidth; c.height = window.innerHeight;
+      const pieces = [];
+      for(let i=0;i<130;i++){
+        pieces.push({
+          x: Math.random()*c.width,
+          y: Math.random()*c.height - c.height,
+          r: Math.random()*6+4,
+          c: ['#7C5CFF','#3ddc97','#ffd166','#ff7ab6'][Math.floor(Math.random()*4)],
+          vx: (Math.random()-0.5)*2, vy: Math.random()*3+2, rot: Math.random()*360
+        });
+      }
+      let t = 0;
+      function frame(){
+        ctx.clearRect(0,0,c.width,c.height);
+        for(const p of pieces){
+          p.x += p.vx; p.y += p.vy; p.rot += 6;
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.rot*Math.PI/180);
+          ctx.fillStyle = p.c;
+          ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+          ctx.restore();
+        }
+        t++;
+        if(t < 140) requestAnimationFrame(frame);
+        else ctx.clearRect(0,0,c.width,c.height);
+      }
+      frame();
+    }
+
+    // ---------- A/B TESTING HOOK ----------
+    // Example: switch CTA text for A/B test (simple)
+    (function runAB(){
+      const variant = localStorage.getItem('abVariant') || (Math.random()<0.5? 'A':'B');
+      localStorage.setItem('abVariant', variant);
+      // hook into data-ab attribute
+      document.querySelectorAll('[data-ab]').forEach(el => el.setAttribute('data-ab', variant));
+      if(variant === 'B'){
+        document.getElementById('cta-top').textContent = 'Kostenlosen Platz sofort sichern';
+      }
+    })();
+
+    // ---------- PIXEL & ANALYTICS (PLACEHOLDERS) ----------
+    // Insert your GA / FB / LinkedIn pixels here or server-side tag manager.
+    // Example (do not include real IDs in the file): 
+    // (function loadGA(){ var s = document.createElement('script'); s.src='https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID'; document.head.appendChild(s); })();
+
+    // ---------- ON LOAD ---------
+    window.addEventListener('load', ()=> {
+      // Accept possible ref in URL, attribute referral if present
+      const urlParams = new URLSearchParams(location.search);
+      const r = urlParams.get('ref');
+      if(r){ referral = r; localStorage.setItem('referral', r); referralInput.value = `${location.origin}?ref=${referral}`; }
+    });
+
+    // ensure responsive canvas size on resize
+    window.addEventListener('resize', ()=> { confCanvas.width = window.innerWidth; confCanvas.height = window.innerHeight; });
+
+  })();
+  </script>
+</body>
+</html>
