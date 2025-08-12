@@ -1,0 +1,6 @@
+run = "github"
+[nix]
+channel = "stable-25_05"
+
+[deployment]
+run = ["sh", "-c", "github"]
